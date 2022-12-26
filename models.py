@@ -18,3 +18,12 @@ class Cupcake(db.Model):
     
     DEFAULT = 'https://tinyurl.com/demo-cupcake'
     image = db.Column(db.Text, default=DEFAULT)
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "flavor": self.flavor,
+            "size": self.size,
+            "rating": self.rating,
+            "image": self.image
+        }
