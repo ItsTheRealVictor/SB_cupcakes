@@ -2,12 +2,31 @@
 <html>
     <body>
         {% block content %}
-            <h1>This is the main page</h1>    
+            <h1>Check out our cupcakes!</h1>
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    {% for cake in cakes %}
+                    <div class="col-4">
+                        
+                        <div class="card my-2">
+                            <div class="card-body">
+                                <h5 class="card-title">{{cake.flavor}}</h5>
+                                <h6 class="card-subtitle text-muted">Rating: {{cake.rating}}</h6>
+                                <h6 class="card-subtitle text-muted my-2">Size: {{cake.size}}</h6>
+                                <img class="card-img-top" src="{{cake.image}}" alt="">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
 
 
 
-
-
-        {% endblock %}
+        {% endblock content%}
     </body>
 </html>
