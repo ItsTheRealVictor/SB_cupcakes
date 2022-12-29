@@ -4,7 +4,7 @@ function makeHTML(cake){
     // copied this right out of the home.html jinja loop
     return `
     <div class="col-4">
-                        
+    
         <div class="card my-2">
             <div class="card-body">
                 <h5 class="card-title">${cake.flavor}</h5>
@@ -14,7 +14,7 @@ function makeHTML(cake){
                 <form style="display:inline" action="/delete/${cake.id}" method="POST">
                     <button class="btn btn-sm btn-danger">DELETE CAKE</button>
                 </form>
-                
+    
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@ async function allCakes() {
     for (let cake of res.data.cakes){
 
         let newCake = $(makeHTML(cake));
-        $('.container-fluid').append(newCake)
+        $('#cake-row').append(newCake)
         console.log(cake.flavor)
 
     }
