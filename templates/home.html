@@ -16,6 +16,9 @@
                                 <h6 class="card-subtitle text-muted">Rating: {{cake.rating}}</h6>
                                 <h6 class="card-subtitle text-muted my-2">Size: {{cake.size}}</h6>
                                 <img class="card-img-top" src="{{cake.image}}" alt="">
+                                <form style="display:inline" action="/delete/{{cake.id}}" method="POST">
+                                    <button class="btn btn-sm btn-danger">DELETE CAKE</button>
+                                </form>
                                 
                             </div>
                         </div>

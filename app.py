@@ -4,8 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, Cupcake
 from forms import CupcakeForm
 import pdb
-from logging import FileHandler, WARNING
-
+import random
 
 
 app = Flask(__name__)
@@ -45,18 +44,20 @@ def add_cupcake():
         flavor = form.flavor.data
         size = form.size.data
         rating = form.rating.data
+        if not rating:
+            rating = 69
         image = form.image.data
-        print(flavor, size, rating, image)
+        if not image:
+            image = random.choice(Cupcake.pics)
+            print(image)
         
         new_cupcake = Cupcake(flavor=flavor,
                               size=size,
                               rating=rating,
                               image=image)
-        # breakpoint()
-        print('A')
+
         db.session.add(new_cupcake)
-        print('B')
-        # breakpoint()
+
         db.session.commit()
         
         
@@ -64,6 +65,17 @@ def add_cupcake():
     
     return render_template('add.html', form=form)
 
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def del_cupcake(id):
+    print(id)
+    cake = Cupcake.query.get_or_404(id)
+    print(cake)
+    db.session.delete(cake)
+    db.session.commit()
+    print('fart')
+    return redirect('/main')
+    
 
 
 @app.route('/api/cupcakes')

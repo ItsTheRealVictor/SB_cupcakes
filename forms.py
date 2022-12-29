@@ -6,4 +6,4 @@ class CupcakeForm(FlaskForm):
     flavor = StringField('Flavor')
     rating = FloatField('Rating')
     size = StringField('Size')
-    image = StringField('Image URL', default='https://tinyurl.com/demo-cupcake')
+    image = StringField('Image URL')
