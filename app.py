@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, flash
+from flask import Flask, request, jsonify, render_template, redirect, flash, Response
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, Cupcake
@@ -34,8 +34,10 @@ def index():
 def main_page():
     return render_template('home.html')
 
-
-
+@app.route('/add', methods=['GET','POST'])
+def add_with_JS():
+    form = CupcakeForm()
+    return render_template('add.html', form=form) 
 
 @app.route('/api/cupcakes')
 def show_all_cupcakes():
@@ -58,7 +60,7 @@ def create_cupcake():
         image=request.json['image']
     )
     if not new_cake.image:
-        new_cake.image = Cupcake.DEFAULT
+        new_cake.image = random.choice(Cupcake.pics)
 
     db.session.add(new_cake)
     db.session.commit()

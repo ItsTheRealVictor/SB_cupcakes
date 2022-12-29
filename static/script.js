@@ -1,5 +1,3 @@
-alert('fart')
-
 function makeHTML(cake){
     // copied this right out of the home.html jinja loop
     return `
@@ -30,8 +28,40 @@ async function allCakes() {
 
         let newCake = $(makeHTML(cake));
         $('#cake-row').append(newCake)
-        console.log(cake.flavor)
 
     }
 }
+
+$('#cake-form').on('submit', async function (e){
+    e.preventDefault()
+
+    let flavor = $('#flavor').val()
+    let rating = $('#rating').val()
+    let size = $('#size').val()
+    let image = $('#image').val()
+
+    console.log('A')
+
+    const newCakeRes = await axios.post('http://127.0.0.1:5000/api/cupcakes', {
+        flavor, rating, size, image
+    })
+
+    console.log('B')
+    console.log(newCakeRes)
+    let newCake = $(makeHTML(newCakeRes.data.new_cake));
+    console.log('C')
+    $('#cake-row').append(newCake)
+    $('#cake-form').trigger('reset')
+    console.log('D')
+})
+
+
+
+
+
+
+
+
+
 allCakes()
+

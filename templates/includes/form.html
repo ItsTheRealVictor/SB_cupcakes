@@ -1,4 +1,4 @@
-<form method="POST">
+<form action="/farts" method="POST" id="cake-form">
   {{ form.hidden_tag() }}
 
   {% for field in form if field.widget.input_type != 'hidden' %}
@@ -13,5 +13,5 @@
     
   {% endfor %}
 
-  <button class="btn btn-success">MAKE A CUPCAKE!!!!</button>
+  <button class="btn btn-success" type="submit">MAKE A CUPCAKE!!!!</button>
 </form>
