@@ -4,10 +4,10 @@
         {% block content %}
             <h1>Check out our cupcakes!</h1>
 
-            <div class="container-fluid" id="cupcake-holder">
+            <div class="container-fluid">
                 <div class="row">
-
-                    {% for cake in cakes %}
+                
+                {% for cake in cakes %}
                     <div class="col-4">
                         
                         <div class="card my-2">
@@ -24,7 +24,6 @@
                         </div>
                     </div>
                     {% endfor %}
-
                 </div>
             </div>
 

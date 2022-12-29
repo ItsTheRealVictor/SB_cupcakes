@@ -29,7 +29,7 @@ async function allCakes() {
     for (let cake of res.data.cakes){
 
         let newCake = $(makeHTML(cake));
-        $('#cupcake-holder').append(newCake)
+        $('.container-fluid').append(newCake)
         console.log(cake.flavor)
 
     }
