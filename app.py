@@ -30,52 +30,11 @@ def index():
     return redirect('/main')
 
 
-@app.route('/main', methods=['GET', 'POST'])
+@app.route('/main')
 def main_page():
-    cakes = Cupcake.query.all()
-    return render_template('home.html', cakes=cakes)
-
-@app.route('/add', methods=['GET', 'POST'])
-def add_cupcake():
-    cakes = Cupcake.query.all()
-    form = CupcakeForm()
-    
-    if form.validate_on_submit():
-        flavor = form.flavor.data
-        size = form.size.data
-        rating = form.rating.data
-        if not rating:
-            rating = 69
-        image = form.image.data
-        if not image:
-            image = random.choice(Cupcake.pics)
-            print(image)
-        
-        new_cupcake = Cupcake(flavor=flavor,
-                              size=size,
-                              rating=rating,
-                              image=image)
-
-        db.session.add(new_cupcake)
-
-        db.session.commit()
-        
-        
-        return redirect('/main')
-    
-    return render_template('add.html', form=form)
+    return render_template('home.html')
 
 
-@app.route('/delete/<int:id>', methods=['POST'])
-def del_cupcake(id):
-    print(id)
-    cake = Cupcake.query.get_or_404(id)
-    print(cake)
-    db.session.delete(cake)
-    db.session.commit()
-    print('fart')
-    return redirect('/main')
-    
 
 
 @app.route('/api/cupcakes')
